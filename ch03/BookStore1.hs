@@ -19,9 +19,13 @@ data MagazineInfo = Magazine Int String [String]
 myInfo = Book 9780135072455 "Algebra of Programming"
          ["Richard Bird", "Oege de Moor"]
 
-data BookReview = BookReview [String]
+-- BookReview
+data BookReview = BookReview BookInfo CustomerID [String]
                   deriving (Show)
 
+-- BetterReview
+data BetterReview = BetterReview BookInfo CustomerID ReviewBody
+                   deriving (Show)
 
 -- type synonyms
 
@@ -38,6 +42,16 @@ type CardHolder = String
 type CardNumber = String
 type Address = [String]
 
+
+-- data BillingInfo
+-- argumentos de CreditCard: CardNumber, CardHolder, Address
+-- CashOnDelivery es un constructror sin argumentos
+-- Invoice constructor y CustomerID arguments
+
+data BillingInfo = CreditCard CardNumber CardHolder Address
+                 | CashOnDelivery
+                 | Invoice CustomerID
+                   deriving (Show)
 
 
 -- patter match
@@ -64,18 +78,6 @@ data Customer = Customer {
      deriving (Show)
 
 
-
-
-
--- data BillingInfo
--- argumentos de CreditCard: CardNumber, CardHolder, Address
--- CashOnDelivery es un constructror sin argumentos
--- Invoice constructor y CustomerID arguments
-
-data BillingInfo = CreditCard CardNumber CardHolder Address
-                 | CashOnDelivery
-                 | Invoice CustomerID
-                   deriving (Show)
 
 
 -- Prueba con customers
